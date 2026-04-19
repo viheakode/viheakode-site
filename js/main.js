@@ -15,7 +15,6 @@ async function sendMessage(data){
     setTimeout(() => {
         window.location.href = "/";
     }, 2000);
-
 }
 
 async function fetchAllMessages(){
@@ -27,15 +26,18 @@ async function fetchAllMessages(){
     })
     const result = await resp.json();
     console.log(result)
-
 }
 
 document.getElementById("contactForm").addEventListener("submit", function (e){
     e.preventDefault()
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-    const appName = document.getElementById("appName").value;
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (name === "" || email === "" || message === "") {
+        toastr.error("Please fill all fields!");
+        return;
+    }
 
     sendMessage(
         {
