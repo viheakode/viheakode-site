@@ -33,6 +33,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e){
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
+    const appName = document.getElementById("appName").value.trim();
 
     if (name === "" || email === "" || message === "") {
         toastr.error("Please fill all fields!");
