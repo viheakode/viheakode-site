@@ -1,371 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Viheakode | Software Engineer & Developer</title>
-    <meta name="description" content="Secure backend systems and scalable APIs using Spring Boot and JWT.">
-    <!-- Tailwind CSS + Google Fonts (Inter + JetBrains Mono for code vibe) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'Segoe UI', 'sans-serif'],
-                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'border-flow': 'borderFlow 8s ease infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-12px)' },
-                        },
-                        glowPulse: {
-                            '0%, 100%': { opacity: '0.6', filter: 'blur(12px)' },
-                            '50%': { opacity: '1', filter: 'blur(16px)' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        borderFlow: {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        }
-                    },
-                    boxShadow: {
-                        'glow': '0 0 20px rgba(79, 70, 229, 0.4)',
-                        'glow-cyan': '0 0 15px rgba(34, 211, 238, 0.3)',
-                        'card-dark': '0 20px 35px -12px rgba(0, 0, 0, 0.5)',
-                    }
-                }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>ViheaKode Corp | Secure Backend Systems & Scalable APIs</title>
+  <meta
+    name="description"
+    content="ViheaKode Corp builds secure, scalable backend systems and modern APIs with Spring Boot, JWT authentication, and security-focused development."
+  />
+  <meta
+    name="keywords"
+    content="ViheaKode, backend development, Spring Boot, JWT authentication, REST API, API security, web security, scalable backend"
+  />
+  <meta name="author" content="ViheaKode Corp" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://viheakode.online/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ViheaKode Corp | Secure Backend Systems & Scalable APIs" />
+  <meta
+    property="og:description"
+    content="Secure backend systems, scalable APIs, and security-focused development for modern applications."
+  />
+  <meta property="og:url" content="https://viheakode.online/" />
+  <meta property="og:site_name" content="ViheaKode Corp" />
+  <meta property="og:image" content="https://viheakode.online/og-image.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ViheaKode Corp | Secure Backend Systems & Scalable APIs" />
+  <meta
+    name="twitter:description"
+    content="Secure backend systems, scalable APIs, and security-focused development for modern applications."
+  />
+  <meta name="twitter:image" content="https://viheakode.online/og-image.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'Segoe UI', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+            'slide-up': 'slideUp 0.5s ease-out',
+            'border-flow': 'borderFlow 8s ease infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            glowPulse: {
+              '0%, 100%': { opacity: '0.6', filter: 'blur(12px)' },
+              '50%': { opacity: '1', filter: 'blur(16px)' },
+            },
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            borderFlow: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
             }
+          },
+          boxShadow: {
+            glow: '0 0 20px rgba(79, 70, 229, 0.4)',
+            'glow-cyan': '0 0 15px rgba(34, 211, 238, 0.3)',
+            'card-dark': '0 20px 35px -12px rgba(0, 0, 0, 0.5)',
+          }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            background: #030014;
-        }
-        .bg-noise-dark {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #818cf8, #c084fc, #38bdf8);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: shine 6s linear infinite;
-        }
-        @keyframes shine {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-        .hover-glow {
-            transition: all 0.25s ease;
-        }
-        .hover-glow:hover {
-            box-shadow: 0 0 18px rgba(129, 140, 248, 0.4);
-            border-color: rgba(129, 140, 248, 0.5);
-            transform: translateY(-3px);
-        }
-        .code-badge {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .glow-border {
-            position: relative;
-            background: linear-gradient(135deg, #4f46e5, #0ea5e9, #8b5cf6);
-            background-size: 200% 200%;
-            animation: borderFlow 6s ease infinite;
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f0f1a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #4f46e5;
-            border-radius: 8px;
-        }
-    </style>
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #030014; }
+    .bg-noise-dark {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8, #c084fc, #38bdf8);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 6s linear infinite;
+    }
+    @keyframes shine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    .hover-glow { transition: all 0.25s ease; }
+    .hover-glow:hover {
+      box-shadow: 0 0 18px rgba(129, 140, 248, 0.4);
+      border-color: rgba(129, 140, 248, 0.5);
+      transform: translateY(-3px);
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f0f1a; }
+    ::-webkit-scrollbar-thumb {
+      background: #4f46e5;
+      border-radius: 8px;
+    }
+  </style>
 </head>
+
 <body class="bg-[#030014] text-gray-200 font-sans bg-noise-dark antialiased">
 
-    <!-- Navigation - Dark glassmorphic -->
-    <nav class="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#0a0a14]/80 border-b border-white/10 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter"><span class="gradient-text">&lt;Viheakode /&gt;</span></a>
-            <div class="hidden md:flex space-x-8 text-gray-300 font-medium">
-                <a href="#home" class="hover:text-indigo-400 transition duration-200">_home</a>
-                <a href="#work" class="hover:text-indigo-400 transition duration-200">_projects</a>
-                <a href="#about" class="hover:text-indigo-400 transition duration-200">_about</a>
-                <a href="#contact" class="hover:text-indigo-400 transition duration-200">_contact</a>
-            </div>
-            <button id="mobileMenuBtn" class="md:hidden text-gray-300 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </div>
-        <div id="mobileMenu" class="md:hidden hidden bg-[#0a0a14]/95 backdrop-blur-xl border-t border-white/10 px-6 py-5 flex flex-col space-y-4 text-center">
-            <a href="#home" class="text-gray-300 hover:text-indigo-400 py-2">_home</a>
-            <a href="#work" class="text-gray-300 hover:text-indigo-400 py-2">_projects</a>
-            <a href="#about" class="text-gray-300 hover:text-indigo-400 py-2">_about</a>
-            <a href="#contact" class="text-gray-300 hover:text-indigo-400 py-2">_contact</a>
-        </div>
-    </nav>
+  <nav class="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#0a0a14]/80 border-b border-white/10 transition-all duration-300">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#home" class="text-2xl font-bold tracking-tighter">
+        <span class="gradient-text">&lt;ViheaKode /&gt;</span>
+      </a>
+      <div class="hidden md:flex space-x-8 text-gray-300 font-medium">
+        <a href="#home" class="hover:text-indigo-400 transition duration-200">_home</a>
+        <a href="#services" class="hover:text-indigo-400 transition duration-200">_services</a>
+        <a href="#about" class="hover:text-indigo-400 transition duration-200">_about</a>
+        <a href="#contact" class="hover:text-indigo-400 transition duration-200">_contact</a>
+      </div>
+      <button id="mobileMenuBtn" class="md:hidden text-gray-300 focus:outline-none" aria-label="Open menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden bg-[#0a0a14]/95 backdrop-blur-xl border-t border-white/10 px-6 py-5 flex flex-col space-y-4 text-center">
+      <a href="#home" class="text-gray-300 hover:text-indigo-400 py-2">_home</a>
+      <a href="#services" class="text-gray-300 hover:text-indigo-400 py-2">_services</a>
+      <a href="#about" class="text-gray-300 hover:text-indigo-400 py-2">_about</a>
+      <a href="#contact" class="text-gray-300 hover:text-indigo-400 py-2">_contact</a>
+    </div>
+  </nav>
 
-    <!-- Hero Section with Developer Vibe -->
+  <main>
     <section id="home" class="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-indigo-950/30 via-transparent to-cyan-950/20 pointer-events-none"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="flex-1 text-center lg:text-left animate-[slideUp_0.6s_ease-out]">
-                    <div class="inline-flex items-center gap-2 bg-indigo-500/10 backdrop-blur-sm border border-indigo-500/30 px-4 py-1.5 rounded-full text-indigo-300 text-sm font-mono mb-6">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
-                        </span>
-                        <span>Available for new opportunities</span>
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
-                        <span class="text-gray-200">Crafting </span>
-                        <span class="gradient-text">scalable systems</span><br>
-                        <span class="text-gray-200">& elegant code.</span>
-                    </h1>
-                    <p class="text-gray-400 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 mt-6 leading-relaxed">
-                       <span class="text-indigo-300 font-semibold">Viheakode</span> builds secure backend systems and scalable APIs, combining performance, reliability, and security for modern applications.
-                    
-                      </p>
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start mt-10">
-                        <a href="#work" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">Explore Code <span>→</span></a>
-                        <a href="#contact" class="px-8 py-3 bg-transparent border border-gray-600 hover:border-indigo-400 rounded-lg font-semibold text-gray-300 hover:text-indigo-300 transition-all duration-300">Let's Build</a>
-                    </div>
-                    <div class="flex justify-center lg:justify-start gap-6 mt-10 font-mono text-sm text-gray-500">
-                        <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> 5+ years exp</div>
-                        <div class="flex items-center gap-2"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> 40+ shipped products</div>
-                        <div class="flex items-center gap-2"><span class="w-2 h-2 bg-purple-500 rounded-full"></span> open source contributor</div>
-                    </div>
-                </div>
-                <div class="flex-1 flex justify-center">
-                    <div class="relative w-72 h-72 md:w-96 md:h-96">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-600 to-cyan-500 rounded-full blur-3xl opacity-30 animate-glow-pulse"></div>
-                        <div class="relative bg-[#11111f]/60 backdrop-blur-sm rounded-2xl border border-white/10 p-2 shadow-2xl hover-glow transition-all duration-500">
-                            <div class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-1">
-                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&auto=format" alt="Alex Rivera coding workspace" class="rounded-xl w-full h-full object-cover opacity-90">
-                            </div>
-                        </div>
-                        <!-- floating terminal badge -->
-                        <div class="absolute -bottom-4 -left-5 bg-[#0f0f1c]/90 backdrop-blur-md border border-indigo-500/30 rounded-xl py-2 px-4 shadow-xl font-mono text-xs flex items-center gap-2 animate-float">
-                            <span class="text-cyan-400">$></span>
-                            <span class="text-gray-300">npm run innovate</span>
-                        </div>
-                        <div class="absolute -top-5 -right-3 bg-indigo-900/50 backdrop-blur-md rounded-full p-2.5 border border-indigo-400/40 animate-float" style="animation-delay: 1.2s;">
-                            <svg class="w-5 h-5 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                        </div>
-                    </div>
-                </div>
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-950/30 via-transparent to-cyan-950/20 pointer-events-none"></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="flex-1 text-center lg:text-left animate-[slideUp_0.6s_ease-out]">
+            <div class="inline-flex items-center gap-2 bg-indigo-500/10 backdrop-blur-sm border border-indigo-500/30 px-4 py-1.5 rounded-full text-indigo-300 text-sm font-mono mb-6">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+              </span>
+              <span>Backend systems • API security • Modern development</span>
             </div>
+
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
+              <span class="text-gray-200">Crafting digital</span><br>
+              <span class="gradient-text">infrastructure</span><br>
+              <span class="text-gray-200">that powers modern apps.</span>
+            </h1>
+
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mt-6 leading-relaxed">
+              <span class="text-indigo-300 font-semibold">ViheaKode Corp</span> is a technology brand focused on building secure,
+              scalable backend systems and modern APIs. We specialize in Spring Boot, JWT authentication,
+              and security-driven development to deliver reliable, high-performance solutions for modern applications.
+            </p>
+
+            <div class="flex flex-wrap gap-4 justify-center lg:justify-start mt-10">
+              <a href="#services" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+                Explore Services <span>→</span>
+              </a>
+              <a href="#contact" class="px-8 py-3 bg-transparent border border-gray-600 hover:border-indigo-400 rounded-lg font-semibold text-gray-300 hover:text-indigo-300 transition-all duration-300">
+                Contact Us
+              </a>
+            </div>
+
+            <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-10 font-mono text-sm text-gray-500">
+              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Spring Boot</div>
+              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> JWT Authentication</div>
+              <div class="flex items-center gap-2"><span class="w-2 h-2 bg-purple-500 rounded-full"></span> API Security</div>
+            </div>
+          </div>
+
+          <div class="flex-1 flex justify-center">
+            <div class="relative w-72 h-72 md:w-96 md:h-96">
+              <div class="absolute inset-0 bg-gradient-to-tr from-indigo-600 to-cyan-500 rounded-full blur-3xl opacity-30 animate-glow-pulse"></div>
+              <div class="relative bg-[#11111f]/60 backdrop-blur-sm rounded-2xl border border-white/10 p-2 shadow-2xl hover-glow transition-all duration-500">
+                <div class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-1">
+                  <img
+                    src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=900&auto=format&fit=crop&q=80"
+                    alt="Developer workspace with code on screen"
+                    class="rounded-xl w-full h-full object-cover opacity-90"
+                  >
+                </div>
+              </div>
+              <div class="absolute -bottom-4 -left-5 bg-[#0f0f1c]/90 backdrop-blur-md border border-indigo-500/30 rounded-xl py-2 px-4 shadow-xl font-mono text-xs flex items-center gap-2 animate-float">
+                <span class="text-cyan-400">$></span>
+                <span class="text-gray-300">build secure systems</span>
+              </div>
+              <div class="absolute -top-5 -right-3 bg-indigo-900/50 backdrop-blur-md rounded-full p-2.5 border border-indigo-400/40 animate-float" style="animation-delay: 1.2s;">
+                <svg class="w-5 h-5 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
-            <svg class="relative block w-full h-12 md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="#0f0f1a">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C39.09,80.6,82.67,70.13,126.39,62.44,184.85,52.12,244.44,45.55,321.39,56.44Z" opacity="0.8"></path>
-            </svg>
-        </div>
+      </div>
+
+      <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+        <svg class="relative block w-full h-12 md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="#0f0f1a">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C39.09,80.6,82.67,70.13,126.39,62.44,184.85,52.12,244.44,45.55,321.39,56.44Z" opacity="0.8"></path>
+        </svg>
+      </div>
     </section>
 
-    <!-- Projects Section (Software Development Focus) -->
-    <section id="work" class="py-28 bg-[#0a0a12] relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-indigo-400 font-mono text-sm tracking-wider">// featured work</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4"><span class="gradient-text">Production-ready</span> builds</h2>
-                <div class="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 mx-auto rounded-full my-4"></div>
-                <p class="text-gray-400">Real-world applications, open-source tools, and backend systems I've engineered.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="group bg-[#11111f] rounded-2xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 shadow-card-dark hover-glow">
-                    <div class="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900 p-5 flex items-center justify-center">
-                        <div class="absolute top-3 left-3 flex gap-1.5">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="font-mono text-cyan-300 text-xl flex flex-col items-center gap-2">
-                            <span class="text-3xl">{ 'api' }</span>
-                            <span class="text-xs text-gray-400">REST · GraphQL</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white">Nexus Gateway API</h3>
-                        <p class="text-gray-400 text-sm mt-2">High-performance API gateway handling 50k+ req/s with rate limiting, JWT auth, and real-time analytics.</p>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20">Node.js</span>
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20">Express</span>
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20">Redis</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="group bg-[#11111f] rounded-2xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 shadow-card-dark hover-glow">
-                    <div class="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900 p-5 flex items-center justify-center">
-                        <div class="absolute top-3 left-3 flex gap-1.5">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="font-mono text-cyan-300 text-4xl font-bold">&lt;/&gt;</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white">CodeCollab IDE</h3>
-                        <p class="text-gray-400 text-sm mt-2">Real-time collaborative code editor with WebSockets, syntax highlighting, and multi-user cursors (like Google Docs for devs).</p>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full">React</span>
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full">Socket.io</span>
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full">Monaco</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="group bg-[#11111f] rounded-2xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 shadow-card-dark hover-glow">
-                    <div class="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900 p-5 flex items-center justify-center">
-                        <div class="absolute top-3 left-3 flex gap-1.5">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="font-mono text-cyan-300 text-3xl">🐳 k8s dash</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white">KubeView Dashboard</h3>
-                        <p class="text-gray-400 text-sm mt-2">Kubernetes monitoring tool with real-time pod metrics, log streaming, and simplified cluster management UI.</p>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full">Go</span>
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full">React</span>
-                            <span class="text-xs bg-indigo-950/50 text-indigo-300 px-2 py-1 rounded-full">K8s API</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center gap-2 text-indigo-400 font-mono border-b border-indigo-500/50 hover:text-indigo-300 transition">view all on GitHub →</a>
-            </div>
+    <section id="services" class="py-28 bg-[#0a0a12] relative">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-indigo-400 font-mono text-sm tracking-wider">// services</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">
+            <span class="gradient-text">Security-focused</span> backend solutions
+          </h2>
+          <div class="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 mx-auto rounded-full my-4"></div>
+          <p class="text-gray-400">
+            We help modern applications run on secure, reliable, and scalable backend foundations.
+          </p>
         </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="group bg-[#11111f] rounded-2xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 shadow-card-dark hover-glow">
+            <div class="relative h-40 bg-gradient-to-br from-gray-800 to-gray-900 p-5 flex items-center justify-center">
+              <div class="font-mono text-cyan-300 text-2xl">{ API }</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-white">REST API Development</h3>
+              <p class="text-gray-400 text-sm mt-2">
+                Designing and building modern APIs for web applications, integrations, and business systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="group bg-[#11111f] rounded-2xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 shadow-card-dark hover-glow">
+            <div class="relative h-40 bg-gradient-to-br from-gray-800 to-gray-900 p-5 flex items-center justify-center">
+              <div class="font-mono text-cyan-300 text-2xl">JWT</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-white">Authentication & Authorization</h3>
+              <p class="text-gray-400 text-sm mt-2">
+                Implementing secure login flows, JWT-based auth, role-based access control, and protected APIs.
+              </p>
+            </div>
+          </div>
+
+          <div class="group bg-[#11111f] rounded-2xl overflow-hidden border border-gray-800 hover:border-indigo-500/50 transition-all duration-300 shadow-card-dark hover-glow">
+            <div class="relative h-40 bg-gradient-to-br from-gray-800 to-gray-900 p-5 flex items-center justify-center">
+              <div class="font-mono text-cyan-300 text-2xl">SEC</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-white">Security-Driven Development</h3>
+              <p class="text-gray-400 text-sm mt-2">
+                Building backend systems with strong validation, access control, and safer production practices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- About - Developer Journey -->
     <section id="about" class="py-28 relative">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-16 items-center">
-                <div class="flex-1 order-2 lg:order-1">
-                    <span class="text-indigo-400 font-mono text-sm">// whoami</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white">Full-stack engineer<br> & problem solver</h2>
-                    <div class="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full my-5"></div>
-                    <p class="text-gray-400 leading-relaxed mb-6">I architect robust, developer-friendly solutions with a focus on clean code, performance, and DX. Previously led frontend at a fintech startup, currently building open-source tools. I believe in automation, testing, and the power of typed languages.</p>
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div class="bg-[#11111f] rounded-xl p-4 border border-gray-800">
-                            <p class="text-2xl font-bold text-indigo-400">10+</p>
-                            <p class="text-gray-500 text-sm">open source contributions</p>
-                        </div>
-                        <div class="bg-[#11111f] rounded-xl p-4 border border-gray-800">
-                            <p class="text-2xl font-bold text-indigo-400">100%</p>
-                            <p class="text-gray-500 text-sm">test coverage mindset</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">TypeScript</span>
-                        <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">Python</span>
-                        <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">Go</span>
-                        <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">React/Next</span>
-                        <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">Node.js</span>
-                        <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">Docker/K8s</span>
-                    </div>
-                </div>
-                <div class="flex-1 order-1 lg:order-2">
-                    <div class="relative bg-[#11111f] rounded-2xl border border-gray-800 p-1 shadow-2xl">
-                        <div class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-5">
-                            <div class="flex items-center gap-2 text-gray-400 font-mono text-sm mb-3">
-                                <span class="text-green-400">➜</span> <span>~/developer/career</span>
-                            </div>
-                            <div class="space-y-3 font-mono text-sm">
-                                <p class="text-gray-300"><span class="text-cyan-400">$</span> cat experience.txt</p>
-                                <p class="text-gray-400 pl-4">▸ Senior Software Engineer @ TechCorp (2022–present)</p>
-                                <p class="text-gray-400 pl-4">▸ Full-stack Developer @ ScaleSoft (2020–2022)</p>
-                                <p class="text-gray-400 pl-4">▸ BSc. Computer Science, MIT (2018)</p>
-                                <p class="text-indigo-400 pl-4 mt-2">> "Code is poetry executed by machines."</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row gap-16 items-center">
+          <div class="flex-1">
+            <span class="text-indigo-400 font-mono text-sm">// about</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white">
+              Backend engineering<br>with performance and security in mind
+            </h2>
+            <div class="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full my-5"></div>
+            <p class="text-gray-400 leading-relaxed mb-6">
+              ViheaKode Corp focuses on backend architecture, secure API design, and modern development workflows.
+              Our work centers on building systems that are reliable, maintainable, and ready for real-world use.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">Spring Boot</span>
+              <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">Java</span>
+              <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">JWT</span>
+              <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">PostgreSQL</span>
+              <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">REST APIs</span>
+              <span class="px-4 py-2 bg-[#0f0f1a] rounded-lg border border-gray-700 text-gray-300 text-sm font-mono">Web Security</span>
             </div>
+          </div>
+
+          <div class="flex-1">
+            <div class="relative bg-[#11111f] rounded-2xl border border-gray-800 p-1 shadow-2xl">
+              <div class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-5">
+                <div class="flex items-center gap-2 text-gray-400 font-mono text-sm mb-3">
+                  <span class="text-green-400">➜</span> <span>~/viheakode/profile</span>
+                </div>
+                <div class="space-y-3 font-mono text-sm">
+                  <p class="text-gray-300"><span class="text-cyan-400">$</span> cat company.txt</p>
+                  <p class="text-gray-400 pl-4">▸ Backend systems and API development</p>
+                  <p class="text-gray-400 pl-4">▸ Spring Boot and JWT authentication</p>
+                  <p class="text-gray-400 pl-4">▸ Security-focused implementation</p>
+                  <p class="text-indigo-400 pl-4 mt-2">> "Secure systems. Scalable APIs."</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Testimonial / Developer Quote -->
-    <section class="py-16 bg-[#0a0a12]">
-        <div class="container mx-auto px-6 max-w-4xl text-center">
-            <svg class="w-10 h-10 text-indigo-500/40 mx-auto mb-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
-            <p class="text-gray-300 text-lg md:text-xl italic">"Alex's code architecture is impeccable. He refactored our entire backend, improving latency by 60% and making the system a joy to maintain."</p>
-            <div class="mt-6">
-                <span class="font-bold text-indigo-300">— Sarah Chen, CTO at Nexify</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
     <section id="contact" class="py-24">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto bg-[#0f0f1a] rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-10 bg-gradient-to-br from-indigo-950/40 to-[#0a0a14]">
-                        <h3 class="text-2xl font-bold text-white mb-2">Let's connect</h3>
-                        <p class="text-gray-400 mb-6">Have a challenging project? Need a senior dev on your team? Reach out.</p>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3 text-gray-300"><svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg><span>security@viheakode.online</span></div>
-                            <div class="flex items-center gap-3 text-gray-300"><svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><span>Phnom Penh, Cambodia</span></div>
-                        </div>
-                        <div class="flex gap-5 mt-8">
-                            <a href="#" class="bg-gray-800 hover:bg-indigo-800/50 p-2 rounded-full transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.21.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48A10.02 10.02 0 0022 12c0-5.52-4.48-10-10-10z"/></svg></a>
-                            <a href="#" class="bg-gray-800 hover:bg-indigo-800/50 p-2 rounded-full transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.99h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.99C18.343 21.128 22 16.991 22 12z"/></svg></a>
-                        </div>
-                    </div>
-                    <div class="p-8 md:p-10 bg-[#0a0a12]">
-                        <form class="space-y-5">
-                            <input type="text" placeholder="Name" class="w-full bg-[#11111f] border border-gray-700 rounded-lg p-3 text-gray-200 focus:outline-none focus:border-indigo-500 transition">
-                            <input type="email" placeholder="Email" class="w-full bg-[#11111f] border border-gray-700 rounded-lg p-3 text-gray-200 focus:outline-none focus:border-indigo-500 transition">
-                            <textarea rows="4" placeholder="Project idea or question..." class="w-full bg-[#11111f] border border-gray-700 rounded-lg p-3 text-gray-200 focus:outline-none focus:border-indigo-500 transition"></textarea>
-                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg transition shadow-lg">Send Message →</button>
-                        </form>
-                    </div>
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto bg-[#0f0f1a] rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
+          <div class="grid md:grid-cols-2">
+            <div class="p-8 md:p-10 bg-gradient-to-br from-indigo-950/40 to-[#0a0a14]">
+              <h2 class="text-2xl font-bold text-white mb-2">Contact ViheaKode</h2>
+              <p class="text-gray-400 mb-6">
+                Looking for backend development, API architecture, or security-focused implementation? Get in touch.
+              </p>
+
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 text-gray-300">
+                  <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                  <a href="mailto:security@viheakode.online" class="hover:text-indigo-300">security@viheakode.online</a>
                 </div>
+
+                <div class="flex items-center gap-3 text-gray-300">
+                  <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <span>Phnom Penh, Cambodia</span>
+                </div>
+              </div>
+
+              <div class="mt-8 text-sm text-gray-500">
+                You can also connect through your GitHub and professional profiles.
+              </div>
             </div>
+
+            <div class="p-8 md:p-10 bg-[#0a0a12]">
+              <form class="space-y-5">
+                <input type="text" placeholder="Name" class="w-full bg-[#11111f] border border-gray-700 rounded-lg p-3 text-gray-200 focus:outline-none focus:border-indigo-500 transition">
+                <input type="email" placeholder="Email" class="w-full bg-[#11111f] border border-gray-700 rounded-lg p-3 text-gray-200 focus:outline-none focus:border-indigo-500 transition">
+                <textarea rows="4" placeholder="Project idea or question..." class="w-full bg-[#11111f] border border-gray-700 rounded-lg p-3 text-gray-200 focus:outline-none focus:border-indigo-500 transition"></textarea>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg transition shadow-lg">
+                  Send Message →
+                </button>
+              </form>
+              <p class="text-xs text-gray-500 mt-4">
+                If the form is not connected yet, visitors can still contact you directly at security@viheakode.online.
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <footer class="bg-[#05050a] border-t border-gray-900 py-8">
-        <div class="container mx-auto px-6 text-center text-gray-500 font-mono text-sm">
-            <p>© 2026 Viheakode</p>
-        </div>
-    </footer>
+  <footer class="bg-[#05050a] border-t border-gray-900 py-8">
+    <div class="container mx-auto px-6 text-center text-gray-500 font-mono text-sm">
+      <p>© 2026 ViheaKode Corp. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <script>
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenuDiv = document.getElementById('mobileMenu');
-        if(mobileBtn && mobileMenuDiv) {
-            mobileBtn.addEventListener('click', () => mobileMenuDiv.classList.toggle('hidden'));
-            document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', () => mobileMenuDiv.classList.add('hidden')));
-        }
-    </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ViheaKode Corp",
+    "url": "https://viheakode.online/",
+    "email": "security@viheakode.online",
+    "description": "ViheaKode Corp builds secure backend systems and scalable APIs using Spring Boot, JWT authentication, and security-focused development.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Phnom Penh",
+      "addressCountry": "KH"
+    }
+  }
+  </script>
+
+  <script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenuDiv = document.getElementById('mobileMenu');
+
+    if (mobileBtn && mobileMenuDiv) {
+      mobileBtn.addEventListener('click', () => mobileMenuDiv.classList.toggle('hidden'));
+      document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => mobileMenuDiv.classList.add('hidden'));
+      });
+    }
+  </script>
 </body>
 </html>
